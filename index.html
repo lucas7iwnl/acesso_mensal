@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Acesso Mensal - SensiAI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl shadow-lg max-w-sm w-full text-center">
+
+        <div id="login-section">
+            <img src="https://i.imgur.com/VoOtU87.png" alt="SensiAI Logo" class="mx-auto w-24 h-auto mb-6">
+            <h1 class="text-2xl font-bold mb-2">Acesso Mensal</h1>
+            <p class="text-gray-400 mb-6">Insira os dados de acesso para continuar.</p>
+            
+            <div class="space-y-4">
+                <input id="email-input" type="email" placeholder="Digite seu e-mail" class="w-full bg-gray-700 text-white placeholder-gray-500 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input id="password-input" type="password" placeholder="Digite sua senha" class="w-full bg-gray-700 text-white placeholder-gray-500 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button onclick="checkCredentials()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                    Entrar
+                </button>
+            </div>
+            <p id="error-message" class="text-red-500 text-sm mt-4 hidden">E-mail ou senha incorretos. Tente novamente.</p>
+        </div>
+
+    </div>
+
+    <script>
+        function checkCredentials() {
+            // --- DADOS DE LOGIN PARA O PLANO MENSAL ---
+            const correctEmail = "assinante@sensiai.com"; 
+            const correctPassword = "mira30dias"; 
+            
+            // --- IMPORTANTE: LINK DE REDIRECIONAMENTO ---
+            // Coloque aqui o link da página que contém o acesso ao Agente IA do mês.
+            const redirectUrl = "./acesso_mensal.html"; 
+            // --- FIM DA PARTE EDITÁVEL ---
+
+            const emailInput = document.getElementById('email-input').value;
+            const passwordInput = document.getElementById('password-input').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (emailInput.toLowerCase() === correctEmail && passwordInput === correctPassword) {
+                errorMessage.classList.add('hidden');
+                window.location.href = redirectUrl;
+            } else {
+                errorMessage.classList.remove('hidden');
+            }
+        }
+        
+        // Permite que o usuário pressione "Enter" para fazer login
+        document.getElementById('password-input').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkCredentials();
+            }
+        });
+         document.getElementById('email-input').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkCredentials();
+            }
+        });
+    </script>
+</body>
+</html>
+
